@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-
+using System.Text;
 
 namespace testalgorithm
 {
@@ -16,32 +16,45 @@ namespace testalgorithm
 //stopWatch.Stop();
 //textbox1.Text = stopWatch.ElapsedMilliseconds.ToString();
       
-        static Boolean IsAtEvenIndex(string s, char item)
+        static String  Reverse(string input)
         {
-            if (String.IsNullOrEmpty(s))
+            if (string.IsNullOrEmpty(input))
             {
-                return false;
+                return input;
             }
 
-            for (int i = 0; i < s.Length / 2 + 1; i += 2)
-            {
-                if (s[i] == item)
-                {
-                    return true;
-                }
+            StringBuilder reversed = new StringBuilder(input.Length);
 
+            for (int i = input.Length - 1 ; i >= 0; i--)
+            {
+                reversed.Append(input[i]);
             }
-            return false;
+            return reversed.ToString();
+
         }
+
+        static String  Reverse2(String input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                return input;
+            }
+
+            char[] arr = input.ToCharArray();
+             Array.Reverse(arr);
+            return new string(arr);
+        }
+
 
         static void Main(string[] args)
         {
-            string input = "Hello";
-            Console.WriteLine(IsAtEvenIndex(input, 'L'));
-            Console.WriteLine(IsAtEvenIndex(input, 'o'));
-            Console.WriteLine(IsAtEvenIndex(input, 'H'));
-            Console.WriteLine(IsAtEvenIndex("", 'H'));
-            Console.WriteLine(IsAtEvenIndex(null, 'H'));
+         
+            Console.WriteLine(Reverse("Hello World"));
+            Console.WriteLine(Reverse(null));
+            Console.WriteLine(Reverse(""));
+            Console.WriteLine(Reverse("hello"));
+            Console.WriteLine(Reverse2("hello"));
+            
             
             
             
