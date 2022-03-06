@@ -16,25 +16,33 @@ namespace testalgorithm
 //stopWatch.Stop();
 //textbox1.Text = stopWatch.ElapsedMilliseconds.ToString();
       
-        static string normalizeString(String input)
+        static Boolean IsAtEvenIndex(string s, char item)
         {
-            return input.ToLower().Trim().Replace(",", "");
-           //string lowercased= input.ToLower();
-           // string trimmed = lowercased.Trim();
-           // return trimmed.Replace(",", "");            
+            if (String.IsNullOrEmpty(s))
+            {
+                return false;
+            }
+
+            for (int i = 0; i < s.Length / 2 + 1; i += 2)
+            {
+                if (s[i] == item)
+                {
+                    return true;
+                }
+
+            }
+            return false;
         }
 
         static void Main(string[] args)
         {
-
-            //Console.WriteLine(IsUppercase("HE"));
-            //Console.WriteLine(IsUppercase("he"));
-
-            //Console.WriteLine(IsLowercase("HE"));
-            //Console.WriteLine(IsLowercase("he"));
+            string input = "Hello";
+            Console.WriteLine(IsAtEvenIndex(input, 'L'));
+            Console.WriteLine(IsAtEvenIndex(input, 'o'));
+            Console.WriteLine(IsAtEvenIndex(input, 'H'));
+            Console.WriteLine(IsAtEvenIndex("", 'H'));
+            Console.WriteLine(IsAtEvenIndex(null, 'H'));
             
-            
-            Console.WriteLine(normalizeString(" Hello There, BUDDY     "));
             
             
 
