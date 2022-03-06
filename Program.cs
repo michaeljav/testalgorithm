@@ -1,36 +1,27 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
+
 
 namespace testalgorithm
 {
     class Program
     {
 
-      static  Stopwatch stopWatch = new Stopwatch();
+      
+        static  Stopwatch stopWatch = new Stopwatch();
 //        stopWatch.Start();
 //for (.......)
 //{
 //}
 //stopWatch.Stop();
 //textbox1.Text = stopWatch.ElapsedMilliseconds.ToString();
-        static Boolean IsUppercase(string s)
+      
+        static string normalizeString(String input)
         {
-            return s.All(char.IsUpper);
-        }
-
-        static Boolean IsLowercase(string s)
-        {
-            return s.All(char.IsLower);
-        }
-
-        static Boolean isPasswordComplex(string s)
-        {
-            return s.Any(char.IsUpper)
-                && s.Any(char.IsLower)
-                && s.Any(char.IsDigit);
-
-
+            return input.ToLower().Trim().Replace(",", "");
+           //string lowercased= input.ToLower();
+           // string trimmed = lowercased.Trim();
+           // return trimmed.Replace(",", "");            
         }
 
         static void Main(string[] args)
@@ -43,8 +34,8 @@ namespace testalgorithm
             //Console.WriteLine(IsLowercase("he"));
             
             
-            Console.WriteLine(isPasswordComplex("Hell0"));
-            Console.WriteLine(isPasswordComplex("Hello"));
+            Console.WriteLine(normalizeString(" Hello There, BUDDY     "));
+            
             
 
         }
