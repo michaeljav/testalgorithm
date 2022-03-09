@@ -23,23 +23,27 @@ namespace testalgorithm
       
           static Boolean BinarySearch(int[] inputArray, int item)
         {
-            int min = 0;
-            int max = inputArray.Length - 1;
 
-            while (min <= max)
+            int minIndiceArray = 0;
+            int maxIndiceArray = inputArray.Length - 1;
+
+            while (minIndiceArray <= maxIndiceArray)
             {
-                int mid = (min + max) / 2;
+                //Get mid point or array
+                int mid = (minIndiceArray + maxIndiceArray) / 2;
                 if (item == inputArray[mid])
                 {
                     return true;
                 }
+                //Evaluate if it is into the First mid 
                 else if(item < inputArray[mid])
                 {
-                    max = mid - 1;
+                    maxIndiceArray = mid - 1;
                 }
+                //Other mid
                 else
                 {
-                    min = mid + 1;
+                    minIndiceArray = mid + 1;
                 }
             }
 
@@ -51,7 +55,8 @@ namespace testalgorithm
         static void Main(string[] args)
         {
             int[] arr = { 1, 2, 3, 4, 5, 6 };
-           Console.WriteLine(BinarySearch(arr, 5));
+       //    Console.WriteLine(BinarySearch(arr, 5));
+           Console.WriteLine(BinarySearch(arr, 0));
 
             // C SHARP DOES HAVE A BUILT-IN FUNCTION FOR BINARY SEARCH
            int result= Array.BinarySearch(arr, 1);
