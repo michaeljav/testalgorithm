@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Diagnostics;
 using System.Text;
 
@@ -21,48 +22,36 @@ namespace testalgorithm
          * Binary search: sorted assumption, O(log(n)) time
          */
       
-          static Boolean BinarySearch(int[] inputArray, int item)
+          static int[] FindEvenNums(int[] arr1, int[] arr2)
         {
 
-            int minIndiceArray = 0;
-            int maxIndiceArray = inputArray.Length - 1;
+            ArrayList result = new ArrayList();
 
-            while (minIndiceArray <= maxIndiceArray)
+            foreach (var num in arr1)
             {
-                //Get mid point or array
-                int mid = (minIndiceArray + maxIndiceArray) / 2;
-                if (item == inputArray[mid])
+                if (num % 2 == 0)
                 {
-                    return true;
+                    result.Add(num);
                 }
-                //Evaluate if it is into the First mid 
-                else if(item < inputArray[mid])
+            }
+            foreach (var num in arr2)
+            {
+                if (num % 2 == 0)
                 {
-                    maxIndiceArray = mid - 1;
-                }
-                //Other mid
-                else
-                {
-                    minIndiceArray = mid + 1;
+                    result.Add(num);
                 }
             }
 
-            return false;
-
-
+            return (int[])result.ToArray(typeof(int));
         }
 
         static void Main(string[] args)
         {
-            int[] arr = { 1, 2, 3, 4, 5, 6 };
-       //    Console.WriteLine(BinarySearch(arr, 5));
-           Console.WriteLine(BinarySearch(arr, 0));
+            int[] arr1 = { -8, 2, 3, -9, 11, -20 };
+            int[] arr2 = { 0, -2, -9,-39, 39,10,7};
 
-            // C SHARP DOES HAVE A BUILT-IN FUNCTION FOR BINARY SEARCH
-           int result= Array.BinarySearch(arr, 1);
-            Console.WriteLine(result);
-
-
+            int[] eventArr = FindEvenNums(arr1, arr2);
+            Array.ForEach(eventArr, Console.WriteLine);
         }
 
       
