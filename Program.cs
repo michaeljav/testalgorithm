@@ -22,36 +22,44 @@ namespace testalgorithm
          * Binary search: sorted assumption, O(log(n)) time
          */
       
-          static int[] FindEvenNums(int[] arr1, int[] arr2)
+          static int[] Reverse(int[] input)
         {
 
-            ArrayList result = new ArrayList();
+            int[] reversed = new int[input.Length];
 
-            foreach (var num in arr1)
+            for (int i = 0; i < reversed.Length; i++)
             {
-                if (num % 2 == 0)
-                {
-                    result.Add(num);
-                }
+                reversed[i] = input[input.Length - i - 1];
             }
-            foreach (var num in arr2)
-            {
-                if (num % 2 == 0)
-                {
-                    result.Add(num);
-                }
-            }
+            return reversed;
+        }
 
-            return (int[])result.ToArray(typeof(int));
+        static void ReverseInPlace(int[] input)
+        {
+            //loop untill mid because inside of for I swap the values.
+            for (int i = 0; i < input.Length / 2; i++)
+            {
+                //Swap index(i) with index(input.Length-i-1)
+                int temp = input[i];
+                input[i] = input[input.Length - i - 1];
+                input[input.Length - i - 1] = temp;
+            }
         }
 
         static void Main(string[] args)
         {
-            int[] arr1 = { -8, 2, 3, -9, 11, -20 };
-            int[] arr2 = { 0, -2, -9,-39, 39,10,7};
+            //6,5,4,3,2,1=
+            int[] arr = { 1,2,3,4,5,6 };
 
-            int[] eventArr = FindEvenNums(arr1, arr2);
+            //OPTION 1 REVERSE
+            int[] eventArr = Reverse(arr);
             Array.ForEach(eventArr, Console.WriteLine);
+
+            //OPTION 2 REVERSE WITH SWAP IN PLACE
+            ReverseInPlace(arr);
+            //THE REVERSE OF THE REVERSE IS THE ORIGINAL CONTENT
+            //ReverseInPlace(arr);
+            Array.ForEach(arr, Console.WriteLine);
         }
 
       
