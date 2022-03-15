@@ -11,6 +11,7 @@ namespace testalgorithm
      
         static void Main(string[] args)
         {
+
             LinkedList<string> listy = new LinkedList<string>();
             //AddLast
             //AddFirst
