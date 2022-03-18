@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace testalgorithm
 {
+
+    
     class CustomLinkedList
     {
         Node head;
@@ -18,6 +20,40 @@ namespace testalgorithm
             public Node(int d) { data = d; }
         }
 
+        public void deleteKthNodeFromEnd(int k)
+        {
+            if(head == null || k== 0)
+            {
+                return;
+            }
+            Node first = head;
+            Node second = head;
+
+            for (int i = 0; i < k; i++)
+            {
+                second = second.next;
+                if (second.next == null)
+                {
+                    //K >= Length of List
+                    if (i == k -1)
+                    {
+                        head = head.next;
+                    }
+                    return;
+                }
+            }
+
+            while (second.next != null)
+            {
+                first = first.next;
+                second = second.next;
+            }
+
+
+            //removing
+            first.next = first.next.next;
+
+        }
         public void deleteBackHalf()
         {
            if (head == null || head.next == null)
@@ -51,6 +87,10 @@ namespace testalgorithm
        
         static void Main(string[] args)
         {
+            
+            
+            LinkedList<int> l = new LinkedList<int>();
+          
             CustomLinkedList linkedlist = new CustomLinkedList();
             Node firstNode = new Node(1);
             Node secondNode = new Node(2);
@@ -84,19 +124,17 @@ namespace testalgorithm
 
 
 
+            //linkedlist.displayContents();
+            //linkedlist.deleteBackHalf();
+            //Console.WriteLine();
+            //linkedlist.displayContents();
+
             linkedlist.displayContents();
-            linkedlist.deleteBackHalf();
+            linkedlist.deleteKthNodeFromEnd(1);
             Console.WriteLine();
             linkedlist.displayContents();
 
-            //LinkedList<int> listTest = new LinkedList<int>();
-            //for (int i = 0; i < 8; i++)
-            //{
-            //    listTest.AddLast(i);
-            //}
 
-            //listTest.Remove(5);
-            
 
 
         }
