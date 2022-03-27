@@ -7,114 +7,46 @@ namespace testalgorithm
     class Algorithms
     {
         
-        static bool hasMatchingParentheses(string s)
+       class Employee
         {
-            if (s.Length <= 0)
+            //string name;
+            public string name { get; set; }
+            public int id { get; set; }
+           // int id;
+            //string department;
+            public string department { get; set; }
+
+            public Employee(string name, int id, string department)
             {
-                return false;
+                this.name = name;
+                this.id = id;
+                this.department = department;
             }
-
-            Stack<char> stack = new Stack<char>();
-
-            for (int i = 0; i < s.Length; i++)
-            {
-                char current = s[i];
-
-                if (current == '(')
-                {
-                    stack.Push(current);
-                    continue;
-                }
-
-                if (current == ')')
-                {
-                    if (stack.Count > 0)
-                    {
-                    stack.Pop();
-                    }
-                    else
-                    {
-                        return false;
-                    }
-
-                }
-            }
-            return stack.Count == 0;
-
-
-        }
-
-        static bool hasMatchingParentheses2(string s)
-        {
-            if (s.Length <= 0)
-            {
-                return false;
-            }
-
-            int machingSymbleTracker = 0;
-
-            for (int i = 0; i < s.Length; i++)
-            {
-                char current = s[i];
-
-                if (current == '(')
-                {
-                    machingSymbleTracker++;
-                    continue;
-                }
-
-                if (current == ')')
-                {
-                    if (machingSymbleTracker > 0)
-                    {
-                        machingSymbleTracker--;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-
-                }
-            }
-            return machingSymbleTracker == 0;
-
-
         }
 
         static void Main(string[] args)
         {
 
+            Employee employee = new Employee("Robby", 3827, "Technology");
+            Employee employee2 = new Employee("Bobby", 9415, "Marketing");
+            Employee employee3 = new Employee("Sally", 2519, "Sales");
 
-            //Console.WriteLine(hasMatchingParentheses(""));
-            //Console.WriteLine(hasMatchingParentheses("((hello()))"));
-            //Console.WriteLine(hasMatchingParentheses("()(hello())"));
-            //Console.WriteLine(hasMatchingParentheses("((hello))"));
-            //Console.WriteLine(hasMatchingParentheses("(hello)"));
+            Dictionary<int, Employee> employeesById = new Dictionary<int, Employee>();
+            employeesById.Add(employee.id, employee);
+            employeesById.Add(employee.id, employee2);
+            employeesById.Add(employee.id, employee3);
 
-            //Console.WriteLine();
+            Employee e;
+            if(employeesById.TryGetValue(9415, out e))
+            {
+                Console.WriteLine(e.name + " : " + e.department);
+            }
 
-            //Console.WriteLine(hasMatchingParentheses("(hello("));
-            //Console.WriteLine(hasMatchingParentheses(")hello)"));
-            //Console.WriteLine(hasMatchingParentheses(")hello("));
-            //Console.WriteLine(hasMatchingParentheses("hello(("));
-            //Console.WriteLine(hasMatchingParentheses("(hello"));
-            //Console.WriteLine(hasMatchingParentheses("((hello)"));
+            HashSet<string> productCodes = new HashSet<string>();
+            productCodes.Add("8F26B");
+            productCodes.Add("0A43P");
 
-
-            Console.WriteLine(hasMatchingParentheses2("((hello()))"));
-            Console.WriteLine(hasMatchingParentheses2("()(hello())"));
-            Console.WriteLine(hasMatchingParentheses2("((hello))"));
-            Console.WriteLine(hasMatchingParentheses2("(hello)"));
-
-            Console.WriteLine();
-
-            Console.WriteLine(hasMatchingParentheses2("(hello("));
-            Console.WriteLine(hasMatchingParentheses2(")hello)"));
-            Console.WriteLine(hasMatchingParentheses2(")hello("));
-            Console.WriteLine(hasMatchingParentheses2("hello(("));
-            Console.WriteLine(hasMatchingParentheses2("(hello"));
-            Console.WriteLine(hasMatchingParentheses2("((hello)"));
-
+            productCodes.Contains("0A43P");
         }
     }
 }
