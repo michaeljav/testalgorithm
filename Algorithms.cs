@@ -87,12 +87,6 @@ namespace testalgorithm
             BinaryTree.preOrderTreversal(rootNode);
             Console.WriteLine();
 
-
-            BinaryTree.inOrderTreversal(rootNode);
-            Console.WriteLine();
-
-            BinaryTree.postOrderTreversal(rootNode);
-            Console.WriteLine();
         }
 
     }
