@@ -7,67 +7,55 @@ namespace testalgorithm
     class Algorithms
     {
 
-        class CustomLinkedList
+        class Node
         {
-            Node head;
+            public Node Left { get; set; }
+            public Node Right { get; set; }
 
-            public class Node
+            public int Data { get; set; }
+        }
+
+        class BinarySearchTree
+        {
+            public static Node Insert(Node root, int value)
             {
-                public int data;
-                public Node next;
-
-                public Node(int d)
+                if (root ==null)
                 {
-                    data = d;
-                    next = null;
+                    root = new Node();
+                    root.Data = value;
+                 
+
                 }
-            }
-
-            public Boolean hasCycle()
-            {
-
-                HashSet<Node> nodes = new HashSet<Node>();
-
-                Node current = head;
-
-                while (current != null)
+                else
                 {
-                    if (nodes.Contains(current))
+                    //if value is less than the root
+                    if (value < root.Data)
                     {
-                        return true;
+                        //insert on left
+                        root.Left = Insert(root.Left, value);
                     }
-                    else
+                    else if(value > root.Data)
                     {
-                        nodes.Add(current);
+                        //insert on right
+                        root.Right = Insert(root.Right, value);
                     }
-                    current = current.next;
+
                 }
-
-                return false;
-            }
-
-            static void Main(string[] args)
-            {
-                CustomLinkedList noCycleLinkedList = new CustomLinkedList();
-                Node firstNode = new Node(3);
-                Node secondNode = new Node(4);
-                Node thirdNode = new Node(5);
-                Node fourthNode = new Node(6);
-
-                noCycleLinkedList.head = firstNode;
-                firstNode.next = secondNode;
-                secondNode.next = thirdNode;
-                thirdNode.next = fourthNode;
-
-                Console.WriteLine(noCycleLinkedList.hasCycle());
-
-                CustomLinkedList cycleLinkedList = new CustomLinkedList();
-                cycleLinkedList.head = firstNode;
-                thirdNode.next = secondNode;
-
-                Console.WriteLine(cycleLinkedList.hasCycle());
+                return root;
             }
         }
+
+        static void Main(string[] args)
+        {
+            Node rootNode = new Node();
+            rootNode.Data = 4;
+            BinarySearchTree.Insert(rootNode, 2);
+            BinarySearchTree.Insert(rootNode, 3);
+            BinarySearchTree.Insert(rootNode, 5);
+            BinarySearchTree.Insert(rootNode, 6);
+            BinarySearchTree.Insert(rootNode, 4);
+            
+        } 
 
     }
 }
