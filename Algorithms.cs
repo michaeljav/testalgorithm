@@ -7,46 +7,31 @@ namespace testalgorithm
     class Algorithms
     {
         
-       class Employee
+      static List<int> findMissingElement(int[] first, int[] second)
         {
-            //string name;
-            public string name { get; set; }
-            public int id { get; set; }
-           // int id;
-            //string department;
-            public string department { get; set; }
+            List<int> missingElements = new List<int>();
+            HashSet<int> secondArrayItems = new HashSet<int>();
 
-            public Employee(string name, int id, string department)
+            foreach (int item in second)
             {
-                this.name = name;
-                this.id = id;
-                this.department = department;
+                secondArrayItems.Add(item);
             }
+
+            foreach (int item in first)
+            {
+                if (!secondArrayItems.Contains(item))
+                {
+                    missingElements.Add(item);
+                }
+            }
+
+            return missingElements;
         }
 
         static void Main(string[] args)
         {
 
-            Employee employee = new Employee("Robby", 3827, "Technology");
-            Employee employee2 = new Employee("Bobby", 9415, "Marketing");
-            Employee employee3 = new Employee("Sally", 2519, "Sales");
-
-            Dictionary<int, Employee> employeesById = new Dictionary<int, Employee>();
-            employeesById.Add(employee.id, employee);
-            employeesById.Add(employee.id, employee2);
-            employeesById.Add(employee.id, employee3);
-
-            Employee e;
-            if(employeesById.TryGetValue(9415, out e))
-            {
-                Console.WriteLine(e.name + " : " + e.department);
-            }
-
-            HashSet<string> productCodes = new HashSet<string>();
-            productCodes.Add("8F26B");
-            productCodes.Add("0A43P");
-
-            productCodes.Contains("0A43P");
+            findMissingElement(new int[] { 1, 2, 3, 4 }, new int[] { 2, 4 }).ForEach(Console.WriteLine);
         }
     }
 }
