@@ -6,34 +6,68 @@ namespace testalgorithm
 
     class Algorithms
     {
-        
-     static void displayFreqOfEachElement(int[] arr)
+
+        class CustomLinkedList
         {
-            Dictionary<int, int> freqDictionary = new Dictionary<int, int>();
+            Node head;
 
-            for (int i = 0; i < arr.Length; i++)
+            public class Node
             {
-                if (freqDictionary.ContainsKey(arr[i]))
-                {
-                    freqDictionary[arr[i]]++;
-                }
-                else
-                {
-                    freqDictionary[arr[i]] = 1;
-                }
+                public int data;
+                public Node next;
 
+                public Node(int d)
+                {
+                    data = d;
+                    next = null;
+                }
             }
 
-            foreach (KeyValuePair<int, int> x in freqDictionary)
+            public Boolean hasCycle()
             {
-                Console.WriteLine(x.Key + " --> " + x.Value);
+
+                HashSet<Node> nodes = new HashSet<Node>();
+
+                Node current = head;
+
+                while (current != null)
+                {
+                    if (nodes.Contains(current))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        nodes.Add(current);
+                    }
+                    current = current.next;
+                }
+
+                return false;
+            }
+
+            static void Main(string[] args)
+            {
+                CustomLinkedList noCycleLinkedList = new CustomLinkedList();
+                Node firstNode = new Node(3);
+                Node secondNode = new Node(4);
+                Node thirdNode = new Node(5);
+                Node fourthNode = new Node(6);
+
+                noCycleLinkedList.head = firstNode;
+                firstNode.next = secondNode;
+                secondNode.next = thirdNode;
+                thirdNode.next = fourthNode;
+
+                Console.WriteLine(noCycleLinkedList.hasCycle());
+
+                CustomLinkedList cycleLinkedList = new CustomLinkedList();
+                cycleLinkedList.head = firstNode;
+                thirdNode.next = secondNode;
+
+                Console.WriteLine(cycleLinkedList.hasCycle());
             }
         }
 
-        static void Main(string[] args)
-        {
-
-            displayFreqOfEachElement(new int[] { 1, 2, 3,4,4 ,8,8,4 });
-        }
     }
 }
