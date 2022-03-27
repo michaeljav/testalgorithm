@@ -7,31 +7,33 @@ namespace testalgorithm
     class Algorithms
     {
         
-      static List<int> findMissingElement(int[] first, int[] second)
+     static void displayFreqOfEachElement(int[] arr)
         {
-            List<int> missingElements = new List<int>();
-            HashSet<int> secondArrayItems = new HashSet<int>();
+            Dictionary<int, int> freqDictionary = new Dictionary<int, int>();
 
-            foreach (int item in second)
+            for (int i = 0; i < arr.Length; i++)
             {
-                secondArrayItems.Add(item);
-            }
-
-            foreach (int item in first)
-            {
-                if (!secondArrayItems.Contains(item))
+                if (freqDictionary.ContainsKey(arr[i]))
                 {
-                    missingElements.Add(item);
+                    freqDictionary[arr[i]]++;
                 }
+                else
+                {
+                    freqDictionary[arr[i]] = 1;
+                }
+
             }
 
-            return missingElements;
+            foreach (KeyValuePair<int, int> x in freqDictionary)
+            {
+                Console.WriteLine(x.Key + " --> " + x.Value);
+            }
         }
 
         static void Main(string[] args)
         {
 
-            findMissingElement(new int[] { 1, 2, 3, 4 }, new int[] { 2, 4 }).ForEach(Console.WriteLine);
+            displayFreqOfEachElement(new int[] { 1, 2, 3,4,4 ,8,8,4 });
         }
     }
 }
